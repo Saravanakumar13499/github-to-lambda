@@ -10,13 +10,13 @@ phases:
     commands:
       - echo "Zipping deployment package..."
       - cd lib
-      - zip -r9 ../deployment package.zip .
+      - zip -r9 ../deployment_package.zip .
       - cd ..
       - zip -g deployment package.zip s3DailyJsonRawDataProcessing.py
   post_build:
     commands:
       - echo "Uploading to s3"
-      - aws s3 cp deployment package.zip s3://lambda-builds-zip-59544/
+      - aws s3 cp deployment_package.zip s3://lambda-builds-zip-59544/
       - echo "Updating lambda function via s3..."
-      - aws lambda update-function-code --function-name github-to-lambda-CICD --s3-bucket lambda-builds-zip-59544 --s3-key deployment package.zip
+      - aws lambda update-function-code --function-name github-to-lambda-CICD --s3-bucket lambda-builds-zip-59544 --s3-key deployment_package.zip
       - echo "deployment completed"
