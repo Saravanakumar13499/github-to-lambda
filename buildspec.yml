@@ -14,7 +14,7 @@ phases:
     - zip -g deployment package.zip s3DailyJsonRawDataProcessing.py
   post_build:
     - echo "Uploading to s3"
-    - aws cp deployment package.zip s3://lambda-builds-zip-59544/
+    - aws s3 cp deployment package.zip s3://lambda-builds-zip-59544/
     - echo "Updating lambda function via s3..."
     - aws lambda update-function-code --function-name github-to-lambda-CICD --s3-bucket lambda-builds-zip-59544 --s3-key deployment package.zip
-    - echo "Uploading to s3"
+    - echo "deployment completed"
