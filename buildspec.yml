@@ -12,7 +12,7 @@ phases:
       - cd lib
       - zip -r9 ../deployment_package.zip .
       - cd ..
-      - zip -g deployment package.zip s3DailyJsonRawDataProcessing.py
+      - zip -g deployment package.zip lambda_function.py
   post_build:
     commands:
       - echo "Uploading to s3"
